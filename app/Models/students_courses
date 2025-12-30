@@ -1,0 +1,18 @@
+import sqlalchemy
+from typing import Optional
+from datetime import datetime
+from .base import SchoolBaseModel
+from sqlalchemy import ForeignKey
+from sqlalchemy import Integer
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import relationship
+
+class StudentsCourses(SchoolBaseModel):
+    students_courses_id: Optional[int] = None
+    students_id: ForeignKey('students.students_id'), nullable=False
+    students: relationship(back_populates='students_courses')
+    courses_id: int
+    passed: Optional[bool] = None
+    start_date: datetime
